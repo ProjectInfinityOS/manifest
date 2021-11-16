@@ -2,5 +2,7 @@
 <manifest>
 
   <project path="vendor/infinity" name="vendor_infinity" remote="ProjectInfinity" />
+
+  <project path="packages/apps/Dialer" name="packages_apps_Dialer" remote="ProjectInfinity" />
   
 </manifest>
