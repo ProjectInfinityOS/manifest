@@ -1,62 +1,50 @@
-<img src="https://github.com/ArrowOS/getting_started/blob/master/misc/logo.png?raw=true">
+PROJECT INFINITY
+===========
 
-# ArrowOS
 
- Getting Started
----------------
-To get started with the ArrowOS sources, you'll need to get
-familiar with [Git and Repo](https://source.android.com/setup/build/downloading).
+### Requirements
+Before start to compiling PROJECT INFINITY for your own device, some requirements as explained bellow:
+- 16GB RAM (Swap can be helpful)
+- Quadcore Processor
+- 150GB Free Disk Space
 
-To initialize your local repository, use command:
+---------------------------------------------------------------------------------------
+
+ Getting Started:
+ ==============
+
+To get started with PROJECT INFINITY, you'll need to get familiar with [Repo](https://source.android.com/source/using-repo.html) and Version Control with [Git](https://source.android.com/source/version-control.html).
+
+To initialize your local repository, use a command like this:
 
 ```bash
-repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-12.0
+repo init -u https://github.com/ProjectInfinityOS/manifest.git -b 12
+
+```
+You can alternatively use this command to save some space and time :
+
+```bash
+repo init --depth=1 -u https://github.com/ProjectInfinityOS/manifest.git -b 12
+
 ```
 
-Then sync up:
+Then to sync up:
 
-```bash
-repo sync
 ```
-
-Building the System
--------------------
- Initialize the ROM environment with the envsetup.sh script.
-
-```bash
-. build/envsetup.sh
+repo sync -c -j$(nproc --all) --force-sync --no-clone-bundle --no-tags
 ```
-
-Lunch your device after cloning all device sources if needed.
-
+You can just use `repo sync` or above command, but this will save you from lot of terminal spam, data and time.
 ```bash
-lunch arrow_devicecodename-buildtype
+repo sync -c -q --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
 ```
+---------------------------------------------------------------------------------------
+ Compilation of  PROJECT INFINITY:
+ ==================
 
-Start compilation
+From root directory of project, perform following commands in terminal
 
 ```bash
-m otapackage
+$ . build/envsetup.sh
+$ lunch infinity_<device_codename>-buildtype
+$ make -jx
 ```
-
-OR
-
-```bash
-m bacon
-```	 
-
-**You can also refer to our detailed guides as listed below:**
-
-[How to compile ArrowOS from source](https://blog.arrowos.net/posts/compilation-guide)
-
-[How to submit patches to ArrowOS Gerrit](https://blog.arrowos.net/how-to-submit-patches-to-arrowos-gerrit)
-
-[Apply for Maintainership](https://blog.arrowos.net/posts/apply-for-maintainership) OR [Submit device for community builds](https://blog.arrowos.net/introducing-community-builds)
-
-To check thread template refer [**HERE**](https://raw.githubusercontent.com/ArrowOS/documentation/master/thread_template.txt)
-
----------------------------------------------------------------------------------------------------------------------
-
-[ArrowOS Website](https://www.arrowos.net/) | [ArrowOS Blog](https://blog.arrowos.net/)
-
----------------------------------------------------------------------------------------------------------------------
